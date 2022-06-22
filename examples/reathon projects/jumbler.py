@@ -6,11 +6,11 @@ import os
 import random
 
 # The files to jumble as a list of sound files:
-jumble_source_folder = "/Users/macbook/Desktop/corptest"
+jumble_source_folder = "/Users/macbook/Documents/Music/Samples/z_oizo"
 sound_files = ut.get_files(jumble_source_folder, mode = 'path')
 
 # The number of items to add to the project:
-num_items = 500
+num_items = 100
 
 # The reathon project and track that the items will be added to:
 myProject = reaper.Project()
@@ -40,4 +40,4 @@ for _ in range(num_items):
 
 # Add the track to the project, then write the project to file:
 myProject.add(myTrack)
-myProject.write(os.path.join(os.getcwd(), 'data/jumbled.rpp'))
+myProject.write('/Users/macbook/Desktop/TESTTEST/jumbled2.rpp')

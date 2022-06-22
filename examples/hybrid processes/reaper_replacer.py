@@ -5,7 +5,7 @@ from _reaperml_lib import *
 import os
 
 # Load the reaper project:
-rpp_file = '/Users/macbook/Documents/BACKUP_GIT/jh-musicking/reaperml/replacer_source.RPP'
+rpp_file = '/Users/macbook/Desktop/test_proj/test_proj.RPP'
 myProject = reaper.Project(file = rpp_file)
 
 # Convert the items in track 0 to a collection, and describe them with mfcc:
@@ -13,7 +13,7 @@ reaper_collection = myProject.convert_to_collection(tracks = [0])
 reaper_collection.describe('mfcc')
 
 # Loading a collection for replacing:
-new_slices_path = '/Users/macbook/Documents/BACKUP_GIT/jh-musicking/reaperml/output2/collection.json'
+new_slices_path = '/Users/macbook/Desktop/test_proj/collections/deep_house_one_shots_kicks_snares_hihats/collection.json'
 collection_for_replacing = fluid.Collection(file = new_slices_path)
 
 # Retrieve the mfcc description of this collection:
@@ -38,9 +38,9 @@ for slice in reaper_collection.slices:
     adding_track.add(reaper.Item(
         reaper.Source(file = nearest.path),
         position = this_slice.custom_params["reaper_position"],
-        length = myProject.time_convert('samps', 'reaper', nearest.num_frames)
+        length = myProject.time_convert('samps', 'reaper', this_slice.num_frames) - 0.1
     ))
 
 # Add the adding track to the project, then write the project to file:
 myProject.add(adding_track)
-myProject.write(os.path.join(os.getcwd(), 'data/REPLACER_export.rpp'))
+myProject.write('/Users/macbook/Desktop/TESTTEST/replaced7.rpp')

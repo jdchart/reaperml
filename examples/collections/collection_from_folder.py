@@ -4,7 +4,7 @@ from _reaperml_lib import *
 import os
 
 # The path to the folde rto use for the collection:
-folder_path = '/Users/macbook/Desktop/corptest'
+folder_path = '/Users/macbook/Documents/Music/Samples/z_oizo'
 
 # Get a list of either sound files, or slice files (.json) in that folder:
 file_list = ut.get_files(folder_path, mode = 'path')
@@ -24,4 +24,4 @@ myCollection.describe('mfcc')
 
 # And finally, write everything to file.
 # Give the collection file name, and if needed, slice files will be created in the same directory:
-myCollection.write(os.path.join(os.getcwd(), 'data/COLLECTION_FOLDER/my_collection_file.json'))
+myCollection.write('/Users/macbook/Desktop/TESTTEST/Z_COLLECTION/collection.json')

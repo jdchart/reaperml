@@ -8,7 +8,7 @@ import os
 num_clusters = 10
 
 # Load a collection and gather the descriptor data to use for calculating clusters:
-file = '/Users/macbook/Documents/BACKUP_GIT/jh-musicking/reaperml/output2/collection.json'
+file = '/Users/macbook/Desktop/TESTTEST/Z_COLLECTION/collection.json'
 loadedCollection = fluid.Collection(file = file)
 desc_np = loadedCollection.descriptors_to_np([{'process_name' : 'mfcc'}])
 
@@ -52,4 +52,4 @@ for i in range(len(cluster_sorted)):
         current_playhead = current_playhead + len_in_reaper
 
 # Write the project out to file:
-cluster_project.write(os.path.join(os.getcwd(), 'data/Cluster_export.rpp'))
+cluster_project.write('/Users/macbook/Desktop/TESTTEST/clusters.rpp')

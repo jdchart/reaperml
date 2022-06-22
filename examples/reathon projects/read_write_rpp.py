@@ -4,7 +4,7 @@ from _reaperml_lib import *
 import os
 
 # The .rpp file to read in:
-rpp_file = '/Users/macbook/Documents/BACKUP_GIT/reaperml/data/test_proj.RPP'
+rpp_file = '/Users/macbook/Desktop/TESTTEST/TESTTEST.RPP'
 
 # Create the reaper project in reathon:
 myProject = reaper.Project(file = rpp_file)
@@ -38,4 +38,4 @@ print(myProject.time_convert('ms', 'reaper', 50.0))
 print(myProject.time_convert('reaper', 'beat', 50.0))
 
 # Finally, we can write our project out to a file:
-myProject.write(os.path.join(os.getcwd(), 'data/test_export.rpp'))
+myProject.write('/Users/macbook/Desktop/TESTTEST/nouveau_projet.rpp')

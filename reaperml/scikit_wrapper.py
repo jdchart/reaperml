@@ -3,6 +3,7 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import Normalizer
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
 import umap
 import matplotlib.pyplot as plt
 import random
@@ -44,6 +45,11 @@ def normalize(arr):
     normed = Normalizer().fit_transform(arr)
 
     return normed
+
+def min_max(arr, **kwargs):
+    scaled = MinMaxScaler((kwargs.get('min', 0), kwargs.get('max', 1))).fit_transform(arr)
+
+    return scaled
 
 def cluster(arr, **kwargs):
 

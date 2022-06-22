@@ -3,6 +3,8 @@ import fluid_wrapper as fluid # FOR REAPERML
 import utils # FOR REAPERML
 #from reathon.exceptions import InvalidNodeMethod
 
+import os
+
 class Node:
     def __init__(self, *nodes_to_add, **kwargs):
         if 'node_name' in kwargs:
@@ -110,6 +112,7 @@ class Project(Node):
             'ITEM' : Item,
             'SOURCE' : Source
         } 
+        self.project_path = ''
         if 'file' in kwargs:
             self.read(kwargs.get('file'))
 
@@ -131,6 +134,8 @@ class Project(Node):
         # Read an rpp file
         self.nodes = [] # Reinit nodes.
         self.props = [] # Reinit props.
+
+        self.project_path = path
 
         # The first element will always be a project, and it is already created:
         current_parent = self 
@@ -169,7 +174,12 @@ class Project(Node):
                         current_parent.props.append(self.parse_prop(line_array))
 
                         if isinstance(current_parent, Source) and self.parse_prop(line_array)[0] == 'FILE':
-                            current_parent.set_file(self.parse_prop(line_array)[1])  
+                            the_file = self.parse_prop(line_array)[1]
+                            if len(the_file.split('/')) <= 1:
+                                current_parent.set_file(os.path.join(utils.get_folder(self.project_path), the_file))  
+                                print('Added file as ' + os.path.join(utils.get_folder(self.project_path), the_file))
+                            else:
+                                current_parent.set_file(the_file)  
 
                         # Update transport info:
                         if isinstance(current_parent, Project) and self.parse_prop(line_array)[0] == 'TEMPO':
@@ -412,7 +422,10 @@ class Source(Node):
     def set_file(self, path):
         # Allow for setting of the file from elsewhere.
         self.file = path
+        self.replace_prop('FILE', path)
         self.process_extension()
+        
+        #print(self.file)
 
     def process_extension(self):
         ext = Path(self.file.replace('"', '')).suffix

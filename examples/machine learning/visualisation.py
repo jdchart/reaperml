@@ -4,7 +4,7 @@
 from _reaperml_lib import *
 
 # Loading the collection of sounds:
-file = '/Users/macbook/Documents/BACKUP_GIT/jh-musicking/reaperml/output2/collection.json'
+file = '/Users/macbook/Desktop/TESTTEST/Z_COLLECTION/collection.json'
 loadedCollection = fluid.Collection(file = file)
 
 # Convert the desired descriptors to a numpy array.
